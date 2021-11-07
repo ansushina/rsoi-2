@@ -17,6 +17,17 @@ jobs:
 
       # TODO build, test and deploy project
 
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      
+      - name: Build
+        run: |
+        cd v2/reservation
+        npm ci
+        npm run build
+
       - name: Run API Tests
         id: run-newman
         uses: anthonyvscode/newman-action@v1
