@@ -38,6 +38,7 @@ jobs:
           heroku_app_name: rsoi-reservation
           heroku_email: nastya.sushina@yandex.ru
           usedocker: true
+          appdir: v2/reservation
 
       - name: Run API Tests
         id: run-newman
