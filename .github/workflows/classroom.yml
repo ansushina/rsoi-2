@@ -31,6 +31,14 @@ jobs:
           npm ci
           npm run build
 
+      - name: Deploy project
+        uses: akhileshns/heroku-deploy@v3.4.6
+        with:
+          heroku_api_key: d4b7dd87-55ec-44e7-8174-4bd38d1bd31a
+          heroku_app_name: rsoi-reservation
+          heroku_email: nastya.sushina@yandex.ru
+          usedocker: true
+
       - name: Run API Tests
         id: run-newman
         uses: anthonyvscode/newman-action@v1
