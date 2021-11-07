@@ -10,7 +10,6 @@ jobs:
   build:
     name: Autograding
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [12.x]
@@ -28,9 +27,9 @@ jobs:
       
       - name: Build
         run: |
-        cd v2/reservation
-        npm ci
-        npm run build
+          cd v2/reservation
+          npm ci
+          npm run build
 
       - name: Run API Tests
         id: run-newman
