@@ -86,6 +86,11 @@ jobs:
           usedocker: true
           appdir: v2/gateway
 
+      - name: Sleep for 5 seconds
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '5s'
+
       - name: Run API Tests
         id: run-newman
         uses: anthonyvscode/newman-action@v1

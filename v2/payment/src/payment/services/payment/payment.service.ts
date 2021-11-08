@@ -1,5 +1,5 @@
 import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
-import { Payment } from 'models/payment';
+import { Payment } from 'src/models/payment';
 import { Client } from 'pg';
 import { PgService } from 'src/postgres/pg.service';
 

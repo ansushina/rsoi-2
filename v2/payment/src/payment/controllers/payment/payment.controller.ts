@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
-import { Payment } from 'models/payment';
+import { Payment } from 'src/models/payment';
 import { PaymentService } from 'src/payment/services/payment/payment.service';
 
 @Controller('payment')
