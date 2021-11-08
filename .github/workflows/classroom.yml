@@ -25,13 +25,13 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       
-      - name: Build
+      - name: build reservation
         run: |
           cd v2/reservation
           npm ci
           npm run build
 
-      - name: Deploy project
+      - name: deploy RESERVATION
         uses: akhileshns/heroku-deploy@v3.4.6
         with:
           heroku_api_key: d4b7dd87-55ec-44e7-8174-4bd38d1bd31a
@@ -39,13 +39,21 @@ jobs:
           heroku_email: nastya.sushina@yandex.ru
           usedocker: true
           appdir: v2/reservation
-        env:
-          PGUSER: ${{ secrets.PGUSER }}
-          PGPASSWORD: ${{ secrets.PGPASSWORD }}
-          PGHOST: ${{ secrets.PGHOST }}
-          PGDATABASE: ${{ secrets.PGDATABASE }}
-          PGPORT: ${{ secrets.PGPORT }}
           
+      - name: build loyalty
+        run: |
+          cd v2/loyalty
+          npm ci
+          npm run build
+
+      - name: deploy LOYALTY
+        uses: akhileshns/heroku-deploy@v3.4.6
+        with:
+          heroku_api_key: d4b7dd87-55ec-44e7-8174-4bd38d1bd31a
+          heroku_app_name: rsoi-loyalty
+          heroku_email: nastya.sushina@yandex.ru
+          usedocker: true
+          appdir: v2/loyalty
 
       - name: Run API Tests
         id: run-newman
