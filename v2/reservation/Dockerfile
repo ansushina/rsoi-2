@@ -1,9 +1,20 @@
 FROM node:14.4.0-slim as build
+ARG PORT
 
 WORKDIR /app
 
 COPY package*.json ./
 RUN npm i
+
+RUN echo PGUSER=$PGUSER >> .env
+RUN echo PGPASSWORD=$PGPASSWORD >> .env
+RUN echo PGHOST=$PGHOST >> .env
+RUN echo PGPORT=$PGPORT >> .env
+RUN echo PGDATABASE=$PGDATABASE >> .env
+RUN echo PORT=$PORT >> .env
+
+RUN echo 'port ${PORT}'
+RUN cat package*.json
 
 COPY . /app
 RUN npm run build

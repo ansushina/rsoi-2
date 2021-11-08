@@ -18,10 +18,13 @@ export class PgService {
         require('dotenv').config({
             path: path.resolve(
                 process.cwd(),
-                process.env.NODE_ENV === 'production' ? '.env' : '.development.env',
+                '.env'
             ),
         });
 
+        Logger.log(process.env.PGUSER)
+        Logger.log(process.env.PGDATABASE)
+        
         const user = process.env.PGUSER;
         const host = process.env.PGHOST;
         const database = process.env.PGDATABASE;
