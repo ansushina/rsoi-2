@@ -55,6 +55,37 @@ jobs:
           usedocker: true
           appdir: v2/loyalty
 
+      - name: build payment
+        run: |
+          cd v2/payment
+          npm ci
+          npm run build
+
+      - name: deploy PAYMENT
+        uses: akhileshns/heroku-deploy@v3.4.6
+        with:
+          heroku_api_key: d4b7dd87-55ec-44e7-8174-4bd38d1bd31a
+          heroku_app_name: rsoi-payment
+          heroku_email: nastya.sushina@yandex.ru
+          usedocker: true
+          appdir: v2/payment
+
+
+      - name: build gateway
+        run: |
+          cd v2/gateway
+          npm ci
+          npm run build
+
+      - name: deploy GATEWAY
+        uses: akhileshns/heroku-deploy@v3.4.6
+        with:
+          heroku_api_key: d4b7dd87-55ec-44e7-8174-4bd38d1bd31a
+          heroku_app_name: rsoi-ansushina
+          heroku_email: nastya.sushina@yandex.ru
+          usedocker: true
+          appdir: v2/gateway
+
       - name: Run API Tests
         id: run-newman
         uses: anthonyvscode/newman-action@v1

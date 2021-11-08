@@ -4,14 +4,22 @@ import { URLSearchParams } from 'url';
 import { map, Observable } from 'rxjs';
 import { Hotel } from 'src/models/hotel';
 import { Reservation } from 'src/models/reservation';
+const path = require('path');
 
 @Injectable()
 export class ReservationsService {
     constructor(
         private readonly http: HttpService,
-    ) {}
+    ) {
+        require('dotenv').config({
+            path: path.resolve(
+                process.cwd(),
+                '.env',
+            ),
+        });
+    }
 
-    private path = 'http://localhost:3000';
+    private path = process.env.RESERVATION_URL;
 
     public getHotels(page, pageSize): Observable<Hotel[]> {
         const url = this.path + '/hotels';

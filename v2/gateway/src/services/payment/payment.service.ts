@@ -2,14 +2,22 @@ import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { Payment } from 'src/models/payment';
 import { map } from 'rxjs';
+const path = require('path');
 
 @Injectable()
 export class PaymentService {
     constructor(
         private readonly http: HttpService,
-    ) {}
+    ) {
+        require('dotenv').config({
+            path: path.resolve(
+                process.cwd(),
+                '.env',
+            ),
+        });
+    }
 
-    private path = 'http://localhost:3001';
+    private path = process.env.PAYMENT_URL;
 
     public getPayment(username:string, paymentId: string) {
         const url = this.path + `/payment/${paymentId}`;
